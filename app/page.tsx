@@ -1,18 +1,37 @@
-export default function HomePage() {
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import ExamCard from '@/components/ExamCard';
+import MobileNav from '@/components/MobileNav';
+
+const popularExams = [
+  { id: "jee", title: "JEE Main & Adv", desc: "Top engineering mock tests.", icon: "📐", colorClass: "text-blue-600 bg-blue-100" },
+  { id: "neet", title: "NEET UG", desc: "Full-length biology focus.", icon: "🧬", colorClass: "text-green-600 bg-green-100" },
+  { id: "upsc", title: "UPSC CSE", desc: "Prelims & Current Affairs.", icon: "🏛️", colorClass: "text-amber-600 bg-amber-100" },
+  { id: "ssc", title: "SSC CGL", desc: "Tier 1 & 2 latest pattern.", icon: "📊", colorClass: "text-purple-600 bg-purple-100" }
+];
+
+export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4 text-center">
-      <div className="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-3xl font-bold mb-6 shadow-xl">
-        P
-      </div>
-      <h1 className="text-4xl md:text-6xl font-black text-slate-900 mb-4 tracking-tight">
-        Welcome to <span className="text-blue-600">Padhai Pilot</span>
-      </h1>
-      <p className="text-lg text-slate-600 mb-8 max-w-lg">
-        Your Next.js + Tailwind + Firebase architecture is successfully set up and live!
-      </p>
-      <div className="animate-pulse px-6 py-2 bg-green-100 text-green-700 font-bold rounded-full border border-green-300">
-        System 100% Secure & Active
-      </div>
-    </main>
+    <>
+      <Header />
+      <main className="flex-1 pb-16 md:pb-0">
+        <Hero />
+        
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">Popular Exams</h2>
+              <p className="text-slate-600 max-w-2xl mx-auto">Select your target exam and access personalized mock tests, previous year questions, and curated notes.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {popularExams.map(exam => (
+                <ExamCard key={exam.id} exam={exam} />
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+      <MobileNav />
+    </>
   );
 }
